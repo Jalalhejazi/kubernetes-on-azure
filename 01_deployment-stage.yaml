@@ -51,22 +51,11 @@ stages:
 
 #####################################################################
 
-          - task: Kubernetes@1
-            displayName: Create custom resources
+           - task: Kubernetes@1
+            displayName: Apply Hello World
             inputs:
               connectionType: 'Kubernetes Service Connection'
               kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
+              namespace: ${{ parameters.STAGE_ENVIRONMENT }}
               command: 'apply'
-              arguments: '--validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.13/deploy/manifests/00-crds.yaml'
-
-          - task: Bash@3
-            displayName: "Repo add jetstack"
-            inputs:
-              targetType: 'inline'
-              script: 'helm repo add jetstack https://charts.jetstack.io'
-
-          - task: Bash@3
-            displayName: "Repo update"
-            inputs:
-              targetType: 'inline'
-              script: 'helm repo update'
+              arguments: '-f $(Build.SourcesDirectory)/yaml/aks-helloworld.yaml'
