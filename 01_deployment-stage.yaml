@@ -18,7 +18,7 @@ stages:
           - task: DownloadPipelineArtifact@2
             inputs:
               artifactName: yaml
-              targetPath: $(Build.SourcesDirectory)/yaml
+              targetPath: $(Build.SourcesDirectory)
 
           - task: HelmInstaller@1
             inputs:
@@ -30,7 +30,7 @@ stages:
               connectionType: 'Kubernetes Service Connection'
               kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
               command: 'create'
-              arguments: ${{ parameters.STAGE_NAME }}
+              arguments: 'namespace ingress-basic'
 
           - task: Bash@3
             displayName: "Repo add nginx"
@@ -43,7 +43,7 @@ stages:
             inputs:
               connectionType: 'Kubernetes Service Connection'
               kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
-              namespace: ${{ parameters.STAGE_NAME }}
+              namespace: 'ingress-basic'
               command: 'install'
               chartType: 'Name'
               chartName: 'stable/nginx-ingress'
@@ -74,7 +74,7 @@ stages:
             inputs:
               connectionType: 'Kubernetes Service Connection'
               kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
-              namespace: ${{ parameters.STAGE_NAME }}
+              namespace: 'ingress-basic'
               command: 'install'
               chartType: 'Name'
               chartName: 'jetstack/cert-manager'
@@ -114,3 +114,4 @@ stages:
               namespace: 'ingress-basic'
               command: 'apply'
               arguments: '-f $(Build.SourcesDirectory)/certificate-${{ parameters.STAGE_NAME }}.yaml'
+
