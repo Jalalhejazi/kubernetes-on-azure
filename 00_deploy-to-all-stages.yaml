@@ -1,11 +1,11 @@
 stages:
-- template: deployment-stage.yaml
+- template: 01_deployment-stage.yaml
   parameters:
     STAGE_NAME: development
     STAGE_ENVIRONMENT: $(DEV_ENVIRONMENT_NAME)
     STAGE_K8S_SERVICE_ENDPOINT: $(DEV_CLUSTER_SERVICE_CONNECTION_NAME)
 
-- template: deployment-stage.yaml
+- template: 01_deployment-stage.yaml
   parameters:
     STAGE_NAME: production
     STAGE_ENVIRONMENT: $(PROD_ENVIRONMENT_NAME)
