@@ -29,7 +29,7 @@ stages:
               connectionType: 'Kubernetes Service Connection'
               kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
               command: 'apply'
-              arguments: '-f $(Build.SourcesDirectory)/configure-custom-role.yaml'
+              arguments: '-f $(Build.SourcesDirectory)/02_configure-custom-role.yaml'
 
           - task: Bash@3
             displayName: "Repo add nginx"
