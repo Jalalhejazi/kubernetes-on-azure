@@ -1,3 +1,6 @@
+# this file defines multistages for different environments
+# To add more stages, uncomment and rename to reflect the env. configuration you need 
+
 stages:
 - template: 01_deployment-stage.yaml
   parameters:
