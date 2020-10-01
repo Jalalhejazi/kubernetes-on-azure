@@ -48,3 +48,25 @@ stages:
             inputs:
               targetType: 'inline'
               script: 'echo ${{ parameters.STAGE_ENVIRONMENT }}'
+
+#####################################################################
+
+          - task: Kubernetes@1
+            displayName: Create custom resources
+            inputs:
+              connectionType: 'Kubernetes Service Connection'
+              kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
+              command: 'apply'
+              arguments: '--validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.13/deploy/manifests/00-crds.yaml'
+
+          - task: Bash@3
+            displayName: "Repo add jetstack"
+            inputs:
+              targetType: 'inline'
+              script: 'helm repo add jetstack https://charts.jetstack.io'
+
+          - task: Bash@3
+            displayName: "Repo update"
+            inputs:
+              targetType: 'inline'
+              script: 'helm repo update'
