@@ -2,16 +2,17 @@
 
 ## ~~Not GUI~~
 
-- Diff option - you can compare the definition which are failing with the last known good configuration.
+- **Diff option** - you can compare the definition which are failing with the last known good configuration.
 
-- History - source control allows you to see every change which was done to your pipeline since the initial creation.
+- **History** - source control allows you to see every change which was done to your pipeline since the initial creation.
 
-- Rollback - if you found that your last commit causing any problem during deployment, simple roll it back to last good configuration.
+- **Rollback** - if you found that your last commit causing any problem during deployment, simple roll it back to last good configuration.
 
-- Reusability option - how often you wanted to reuse pipeline which is already defined? - now you can simply do that by copy/paste option.
+- **Reusability option** - how often you wanted to reuse pipeline which is already defined? - now you can simply do that by copy/paste option.
 
-- Team Sharing - if there are multiple people working on same pipeline it can cause problem using GUI, using YAML team members can work on separate branch and adjust definition according to their needs.
+- **Team Sharing** - if there are multiple people working on same pipeline it can cause problem using GUI, using YAML team members can work on separate branch and adjust definition according to their needs.
 
+- **GitOps** - verything in Git  
 
 ## Prerequesite
 
