@@ -1,0 +1,20 @@
+variables:
+- group: AKSBuildVariables
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    pool:
+      vmImage: 'windows-2019' 
+    continueOnError: true
+    steps:
+    - checkout: self
+      clean: true
+      persistCredentials: true 
+    - task: PublishPipelineArtifact@1
+      inputs:
+        path: $(System.DefaultWorkingDirectory)
+        artifact: yaml
+
+- template: deploy-to-all-stages.yaml
