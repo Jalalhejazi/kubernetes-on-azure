@@ -12,7 +12,7 @@
 
 - **Team Sharing** - if there are multiple people working on same pipeline it can cause problem using GUI, using YAML team members can work on separate branch and adjust definition according to their needs.
 
-- **GitOps** - verything in Git  
+- **GitOps** - verything in Git (minus secrets)
 
 ## Prerequesite
 
