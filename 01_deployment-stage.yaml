@@ -2,7 +2,6 @@ parameters:
   STAGE_NAME: ''
   STAGE_ENVIRONMENT: ''
   STAGE_K8S_SERVICE_ENDPOINT: ''
-  STAGE_PUBLIC_IP: ''
 
 stages:
 - stage: ${{ parameters.STAGE_NAME }}
@@ -22,96 +21,30 @@ stages:
 
           - task: HelmInstaller@1
             inputs:
-              helmVersionToInstall: '3.2.0'
+              helmVersionToInstall: '2.14.3'
 
           - task: Kubernetes@1
-            displayName: Configure ingress namespace
+            displayName: Configure custom role
             inputs:
               connectionType: 'Kubernetes Service Connection'
               kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
               command: 'apply'
-              arguments: 'namespace ingress-basic'
+              arguments: '-f $(Build.SourcesDirectory)/02_configure-custom-role.yaml'
 
           - task: Bash@3
             displayName: "Repo add nginx"
             inputs:
               targetType: 'inline'
-              script: 'helm repo add stable https://kubernetes-charts.storage.googleapis.com/'
-
-          - task: HelmDeploy@0
-            displayName: Install Nginx
-            inputs:
-              connectionType: 'Kubernetes Service Connection'
-              kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
-              namespace: 'ingress-basic'
-              command: 'install'
-              chartType: 'Name'
-              chartName: 'stable/nginx-ingress'
-              arguments: '--set controller.replicaCount=1 --set controller.service.loadBalancerIP=${{ parameters.STAGE_PUBLIC_IP }} --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux'
-
-          - task: Kubernetes@1
-            displayName: Create custom resources
-            inputs:
-              connectionType: 'Kubernetes Service Connection'
-              kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
-              command: 'apply'
-              arguments: '--validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.13/deploy/manifests/00-crds.yaml'
-
-          - task: Bash@3
-            displayName: "Repo add jetstack"
-            inputs:
-              targetType: 'inline'
-              script: 'helm repo add jetstack https://charts.jetstack.io'
+              script: 'helm repo add nginx-stable https://helm.nginx.com/stable'
 
           - task: Bash@3
             displayName: "Repo update"
             inputs:
               targetType: 'inline'
-              script: 'helm repo update'
+              script: 'helm repo update'  
 
-          - task: HelmDeploy@0
-            displayName: Install cert-manager
+          - task: Bash@3
+            displayName: "echo staging"
             inputs:
-              connectionType: 'Kubernetes Service Connection'
-              kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
-              namespace: 'ingress-basic'
-              command: 'install'
-              chartType: 'Name'
-              chartName: 'jetstack/cert-manager'
-              arguments: '--version v0.13.0'
-
-          - task: Kubernetes@1
-            displayName: Apply cluster issuer
-            inputs:
-              connectionType: 'Kubernetes Service Connection'
-              kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
-              command: 'apply'
-              arguments: '-f $(Build.SourcesDirectory)/certificate-cluster-issuer.yaml'
-
-          - task: Kubernetes@1
-            displayName: Apply Hello World
-            inputs:
-              connectionType: 'Kubernetes Service Connection'
-              kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
-              namespace: 'ingress-basic'
-              command: 'apply'
-              arguments: '-f $(Build.SourcesDirectory)/aks-helloworld.yaml'
-
-          - task: Kubernetes@1
-            displayName: Ingress assign certificate
-            inputs:
-              connectionType: 'Kubernetes Service Connection'
-              kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
-              namespace: 'ingress-basic'
-              command: 'apply'
-              arguments: '-f $(Build.SourcesDirectory)/ingress-assign-certificate-${{ parameters.STAGE_NAME }}.yaml'
-
-          - task: Kubernetes@1
-            displayName: Create certificate
-            inputs:
-              connectionType: 'Kubernetes Service Connection'
-              kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
-              namespace: 'ingress-basic'
-              command: 'apply'
-              arguments: '-f $(Build.SourcesDirectory)/certificate-${{ parameters.STAGE_NAME }}.yaml'
-
+              targetType: 'inline'
+              script: 'echo ${{ parameters.STAGE_ENVIRONMENT }}'
