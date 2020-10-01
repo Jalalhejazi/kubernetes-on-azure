@@ -32,22 +32,13 @@ stages:
               arguments: '-f $(Build.SourcesDirectory)/02_configure-custom-role.yaml'
 
           - task: Kubernetes@1
-            displayName: Apply Hello World
-            inputs:
-              connectionType: 'Kubernetes Service Connection'
-              kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
-              namespace: ${{ parameters.STAGE_ENVIRONMENT }}
-              command: 'apply'
-              arguments: '-f $(Build.SourcesDirectory)/03_aks-helloworld.yaml'
-          
-          - task: Kubernetes@1
             displayName: Apply Azure Vote
             inputs:
               connectionType: 'Kubernetes Service Connection'
               kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
               namespace: ${{ parameters.STAGE_ENVIRONMENT }}
               command: 'apply'
-              arguments: '-f $(Build.SourcesDirectory)/04_azure_vote.yaml'
+              arguments: '-f $(Build.SourcesDirectory)/100_azure_vote.yaml'
 
           - task: Bash@3
             displayName: "Repo update"
