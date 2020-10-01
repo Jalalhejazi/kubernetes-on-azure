@@ -42,3 +42,9 @@ stages:
             inputs:
               targetType: 'inline'
               script: 'helm repo update'  
+
+          - task: Bash@3
+            displayName: "echo staging"
+            inputs:
+              targetType: 'inline'
+              script: 'echo ${{ parameters.STAGE_ENVIRONMENT }}'
