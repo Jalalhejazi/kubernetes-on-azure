@@ -17,7 +17,7 @@ stages:
           - task: DownloadPipelineArtifact@2
             inputs:
               artifactName: yaml
-              targetPath: $(Build.SourcesDirectory)/yaml
+              targetPath: $(Build.SourcesDirectory)
 
           - task: HelmInstaller@1
             inputs:
