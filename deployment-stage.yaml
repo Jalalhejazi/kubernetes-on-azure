@@ -1,0 +1,44 @@
+parameters:
+  STAGE_NAME: ''
+  STAGE_ENVIRONMENT: ''
+  STAGE_K8S_SERVICE_ENDPOINT: ''
+
+stages:
+- stage: ${{ parameters.STAGE_NAME }}
+  jobs:  
+  - deployment: SetupCluster
+    pool: 
+      vmImage: 'ubuntu-latest'
+    environment: ${{ parameters.STAGE_ENVIRONMENT }}
+    strategy: 
+      runOnce:
+        deploy:
+          steps:
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifactName: yaml
+              targetPath: $(Build.SourcesDirectory)/yaml
+
+          - task: HelmInstaller@1
+            inputs:
+              helmVersionToInstall: '2.14.3'
+
+          - task: Kubernetes@1
+            displayName: Configure custom role
+            inputs:
+              connectionType: 'Kubernetes Service Connection'
+              kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
+              command: 'apply'
+              arguments: '-f $(Build.SourcesDirectory)/yaml/configure-custom-role.yaml.yaml'
+
+          - task: Bash@3
+            displayName: "Repo add nginx"
+            inputs:
+              targetType: 'inline'
+              script: 'helm repo add nginx-stable https://helm.nginx.com/stable'
+
+          - task: Bash@3
+            displayName: "Repo update"
+            inputs:
+              targetType: 'inline'
+              script: 'helm repo update'  
