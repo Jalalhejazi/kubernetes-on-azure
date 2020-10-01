@@ -25,7 +25,7 @@
    - Create Environment for "test"
    - Create Environment for "production"
    - Create Environment for "etc"
-- Find service connection from project settings and rename 
+- Find [service connection](https://dev.azure.com/superusers-kursus/kubernetes-on-azure/_settings/adminservices) from project settings and rename 
 
 ## step: 02
 
