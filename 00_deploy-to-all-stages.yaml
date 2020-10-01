@@ -1,12 +1,12 @@
 stages:
 - template: 01_deployment-stage.yaml
   parameters:
-    STAGE_NAME: development
+    STAGE_NAME: kubernetes-on-azure-development
     STAGE_ENVIRONMENT: $(DEV_ENVIRONMENT_NAME)
     STAGE_K8S_SERVICE_ENDPOINT: $(DEV_CLUSTER_SERVICE_CONNECTION_NAME)
 
 - template: 01_deployment-stage.yaml
   parameters:
-    STAGE_NAME: production
+    STAGE_NAME: kubernetes-on-azure-production
     STAGE_ENVIRONMENT: $(PROD_ENVIRONMENT_NAME)
     STAGE_K8S_SERVICE_ENDPOINT: $(PROD_CLUSTER_SERVICE_CONNECTION_NAME)
