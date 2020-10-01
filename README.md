@@ -27,6 +27,7 @@
    - Create Environment for "production"
    - Create Environment for "etc"
 - Find [service connection](https://dev.azure.com/superusers-kursus/kubernetes-on-azure/_settings/adminservices) from project settings and rename 
+- [kubernetes-best-practices-organizing-with-namespaces](https://cloud.google.com/blog/products/gcp/kubernetes-best-practices-organizing-with-namespaces)
 
 ## step: 02
 
