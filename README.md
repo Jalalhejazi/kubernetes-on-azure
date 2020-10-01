@@ -30,12 +30,16 @@
 
 ## step: 02
 
-- You should also configure variable group 
+- You should also configure variable group [under pipelines --> Library ](https://dev.azure.com/superusers-kursus/kubernetes-on-azure/_library?itemType=VariableGroups)
 
 
 ## step: 03
 
 - Before running Azure-pipeline-yaml for first time, assign variable group to pipeline.
+
+- Run pipeline and retry ... 
+
+
 
 
 
