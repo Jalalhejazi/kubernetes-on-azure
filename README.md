@@ -1,4 +1,4 @@
-# Multi-Stage YAML Pipeline Configuration
+# Multi-Stage YAML Pipeline Proof-Of-Concept (GitOps)
 
 ## ~~Not GUI~~
 
