@@ -31,11 +31,14 @@ stages:
               command: 'apply'
               arguments: '-f $(Build.SourcesDirectory)/02_configure-custom-role.yaml'
 
-          - task: Bash@3
-            displayName: "Repo add nginx"
+          - task: Kubernetes@1
+            displayName: Apply Hello World
             inputs:
-              targetType: 'inline'
-              script: 'helm repo add nginx-stable https://helm.nginx.com/stable'
+              connectionType: 'Kubernetes Service Connection'
+              kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
+              namespace: ${{ parameters.STAGE_ENVIRONMENT }}
+              command: 'apply'
+              arguments: '-f $(Build.SourcesDirectory)/03_aks-helloworld.yaml'
 
           - task: Bash@3
             displayName: "Repo update"
