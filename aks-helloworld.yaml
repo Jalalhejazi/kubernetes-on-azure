@@ -42,7 +42,6 @@ spec:
   tls:
   - hosts:
     - superusers2020.westeurope.cloudapp.azure.com
-    secretName: tls-secret
   rules:
   - host: superusers2020.westeurope.cloudapp.azure.com
     http:
