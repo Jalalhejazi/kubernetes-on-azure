@@ -15,11 +15,11 @@ stages:
     STAGE_K8S_SERVICE_ENDPOINT: $(TEST_CLUSTER_SERVICE_CONNECTION_NAME)
 #    STAGE_PUBLIC_IP: $(PUBLICIP_TEST)
 
-- template: 01_deployment-stage.yaml
-  parameters:
-    STAGE_NAME: production
-    STAGE_ENVIRONMENT: $(PROD_ENVIRONMENT_NAME)
-    STAGE_K8S_SERVICE_ENDPOINT: $(PROD_CLUSTER_SERVICE_CONNECTION_NAME)
+#- template: 01_deployment-stage.yaml
+#  parameters:
+#    STAGE_NAME: production
+#    STAGE_ENVIRONMENT: $(PROD_ENVIRONMENT_NAME)
+#    STAGE_K8S_SERVICE_ENDPOINT: $(PROD_CLUSTER_SERVICE_CONNECTION_NAME)
 
 
 #- template: 01_deployment-stage.yaml
