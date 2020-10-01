@@ -29,7 +29,7 @@ stages:
             inputs:
               connectionType: 'Kubernetes Service Connection'
               kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
-              command: 'create'
+              command: 'apply'
               arguments: 'namespace ingress-basic'
 
           - task: Bash@3
