@@ -40,8 +40,7 @@ stages:
               command: 'apply'
               arguments: '-f $(Build.SourcesDirectory)/100_azure_vote.yaml'
            
-           
-           - task: Kubernetes@1
+          - task: Kubernetes@1
             displayName: Apply angular kursus app
             inputs:
               connectionType: 'Kubernetes Service Connection'
