@@ -1,14 +1,30 @@
 apiVersion: apps/v1
+# A deployment is used to keep a set of pods running by creating pods from a template.
 kind: Deployment
+
 metadata:
   name: azure-vote-back
 spec:
+
+#  the replicas key sets the number of instances of the pod that the deployment should keep alive.
+#  How many copies of each pod do we want? 1, 2, 3, 4, 5, 6, etc..
   replicas: 1
+
+# How do want to update the pods?
+  strategy: Recreate
+
+# Which pods are managed by this deployment?
   selector:
+   # This must match the labels we set on the pod!
     matchLabels:
       app: azure-vote-back
+
+# This template field is a regular pod configuration 
+  # nested inside the deployment spec
   template:
     metadata:
+      # Set labels on the pod.
+      # This is used in the deployment selector.
       labels:
         app: azure-vote-back
     spec:
@@ -16,6 +32,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
       - name: azure-vote-back
+        # https://hub.docker.com/_/redis
         image: redis
         resources:
           requests:
@@ -27,8 +44,14 @@ spec:
         ports:
         - containerPort: 6379
           name: redis
+
+##################################################################################
 ---
 apiVersion: v1
+
+# A service is used to allow network access to a set of pods.
+# this API service is hosting InMemory Database (Redis)
+# must listen on default port 6379
 kind: Service
 metadata:
   name: azure-vote-back
@@ -37,8 +60,12 @@ spec:
   - port: 6379
   selector:
     app: azure-vote-back
+
+##################################################################################
 ---
 apiVersion: apps/v1
+
+# Yet another deployment in the same file. is used to keep a set of pods running by creating pods from a template.
 kind: Deployment
 metadata:
   name: azure-vote-front
@@ -56,6 +83,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
       - name: azure-vote-front
+        # https://hub.docker.com/r/microsoft/azure-vote-front/tags
         image: microsoft/azure-vote-front:v1
         resources:
           requests:
@@ -69,6 +97,9 @@ spec:
         env:
         - name: REDIS
           value: "azure-vote-back"
+
+
+##################################################################################          
 ---
 apiVersion: v1
 kind: Service
@@ -80,3 +111,26 @@ spec:
   - port: 80
   selector:
     app: azure-vote-front
+
+
+#######################################################################################
+# This lets you do CANARY Deployments:
+#
+#           kubectl apply -f 100_azure_vote.yaml
+#
+# You add a new deployment version of a pod and run it alongside your existing deployment, 
+# but have both deployments handle requests to the service. 
+# Once deployed, you can verify the new deployment on a small proportion of the service's traffic, 
+# and gradually scale up the new deployment while decreasing the old one.
+#
+#
+# 
+#
+# How to delete a deployment in Kubernetes ? 
+#
+#           kubectl delete -f 100_azure_vote.yaml
+#
+#######################################################################################
+
+
+
