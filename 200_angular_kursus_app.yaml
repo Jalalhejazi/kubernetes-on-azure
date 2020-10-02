@@ -34,6 +34,7 @@ spec:
         # https://dev.azure.com/superusers-kursus/angular/_git/ng-template-05?path=%2Fdockerfile
         image: jalalhejazi/angular-kursus-2020
         resources:
+          #h ttps://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
           requests:
             cpu: 100m
             memory: 128Mi
