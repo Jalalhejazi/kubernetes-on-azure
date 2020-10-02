@@ -1,10 +1,12 @@
 # Multi-Stage YML Azure-pipeline GitOps Proof-Of-Concept
 
-# Yet Another Markup Language ==> YML and YAML
+### Yet Another Markup Language ==> YML and YAML
 
-# I use YAML for Kubernetes
-# I use YML  for Azure-pipeline 
+## I use YAML for Kubernetes
+## I use YML  for Azure-pipeline 
 
+<br>
+<br>
 
 - **Diff option** - you can compare the definition which are failing with the last known good configuration.
 
