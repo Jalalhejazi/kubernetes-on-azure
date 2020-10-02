@@ -113,24 +113,24 @@ spec:
     app: azure-vote-front
 
 
-#######################################################################################
-# This lets you do CANARY Deployments:
-#
-#           kubectl apply -f 100_azure_vote.yaml
-#
-# You add a new deployment version of a pod and run it alongside your existing deployment, 
-# but have both deployments handle requests to the service. 
-# Once deployed, you can verify the new deployment on a small proportion of the service's traffic, 
-# and gradually scale up the new deployment while decreasing the old one.
-#
-#
-# 
-#
-# How to delete a deployment in Kubernetes ? 
-#
-#           kubectl delete -f 100_azure_vote.yaml
-#
-#######################################################################################
+  #######################################################################################
+  # This lets you do CANARY Deployments:
+  #
+  #           kubectl apply -f 100_azure_vote.yaml
+  #
+  # You add a new deployment version of a pod and run it alongside your existing deployment, 
+  # but have both deployments handle requests to the service. 
+  # Once deployed, you can verify the new deployment on a small proportion of the service's traffic, 
+  # and gradually scale up the new deployment while decreasing the old one.
+  #
+  #
+  # 
+  #
+  # How to delete a deployment in Kubernetes ? 
+  #
+  #           kubectl delete -f 100_azure_vote.yaml
+  #
+  #######################################################################################
 
 
 

@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+# A deployment is used to keep a set of pods running by creating pods from a template.
+kind: Deployment
+
+metadata:
+  name: angular-kursus-2020
+spec:
+
+#  the replicas key sets the number of instances of the pod that the deployment should keep alive.
+#  How many copies of each pod do we want? 1, 2, 3, 4, 5, 6, etc..
+  replicas: 1
+
+# How do want to update the pods?
+#  strategy: Recreate
+
+# Which pods are managed by this deployment?
+  selector:
+   # This must match the labels we set on the pod!
+    matchLabels:
+      app: angular-kursus-2020
+
+# This template field is a regular pod configuration 
+  # nested inside the deployment spec
+  template:
+    metadata:
+      # Set labels on the pod.
+      # This is used in the deployment selector.
+      labels:
+        app: angular-kursus-2020
+    spec:
+      
+      containers:
+      - name: angular-kursus-2020
+        # https://dev.azure.com/superusers-kursus/angular/_git/ng-template-05?path=%2Fdockerfile
+        image: jalalhejazi/angular-kursus-2020
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 6379
+          name: angular-kursus-2020
+
+##################################################################################
+---
+apiVersion: v1
+
+# A service is used to allow network access to a set of pods.
+# must listen on default port 80
+kind: Service
+metadata:
+  name: angular-kursus-2020
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: angular-kursus-2020
+
+
+
+
+#######################################################################################
+# This lets you do CANARY Deployments:
+#
+#           kubectl apply -f 200_angular_kursus_app.yaml
+#
+# You add a new deployment version of a pod and run it alongside your existing deployment, 
+# but have both deployments handle requests to the service. 
+# Once deployed, you can verify the new deployment on a small proportion of the service's traffic, 
+# and gradually scale up the new deployment while decreasing the old one.
+#
+#
+# 
+#
+# How to delete a deployment in Kubernetes ? 
+#
+#           kubectl delete -f 200_angular_kursus_app.yaml
+#
+#######################################################################################
+
+
+
