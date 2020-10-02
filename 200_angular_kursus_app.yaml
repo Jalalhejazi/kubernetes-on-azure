@@ -42,7 +42,7 @@ spec:
             memory: 256Mi
         ports:
         - containerPort: 80
-          name: angular-kursus-2020
+          name: angular
 
 ##################################################################################
 ---
