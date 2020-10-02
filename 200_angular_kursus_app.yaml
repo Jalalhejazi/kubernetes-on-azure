@@ -22,7 +22,7 @@ spec:
 # In this type of very simple deployment 'Recreate', 
 # all of the old pods are killed all at once and get replaced all at once with the new ones.
   strategy: 
-    - Recreate
+  - Recreate
 
 # Which pods are managed by this deployment?
   selector:
