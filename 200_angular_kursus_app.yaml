@@ -11,7 +11,7 @@ spec:
 #  and if replicas: 0 then no pods is running, Zero means shutdown  
   replicas: 1
 
-# How do want to update the pods?
+# How do we want to update the pods?
 
 # https://www.weave.works/blog/kubernetes-deployment-strategies
 
