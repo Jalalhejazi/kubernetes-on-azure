@@ -17,4 +17,4 @@ stages:
         path: $(System.DefaultWorkingDirectory)
         artifact: yaml
 
-- template: 00_deploy-to-all-stages.yaml
+- template: 00_deploy-to-all-stages.yml
