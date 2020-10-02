@@ -8,10 +8,20 @@ spec:
 
 #  the replicas key sets the number of instances of the pod that the deployment should keep alive.
 #  How many copies of each pod do we want? 1, 2, 3, 4, 5, 6, etc..
-  replicas: 1
+  replicas: 3
 
 # How do want to update the pods?
-#  strategy: Recreate
+
+# https://www.weave.works/blog/kubernetes-deployment-strategies
+
+# recreate: terminate the old version and release the new one.
+# ramped: release a new version on a rolling update fashion, one after the other.
+# blue/green: release a new version alongside the old version then switch traffic.
+# canary: release a new version to a subset of users, then proceed to a full rollout.
+
+# In this type of very simple deployment 'Recreate', 
+# all of the old pods are killed all at once and get replaced all at once with the new ones.
+  strategy: Recreate
 
 # Which pods are managed by this deployment?
   selector:
