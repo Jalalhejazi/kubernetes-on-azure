@@ -23,13 +23,13 @@ stages:
             inputs:
               helmVersionToInstall: '2.14.3'
 
-          - task: Kubernetes@1
-            displayName: Configure custom role
-            inputs:
-              connectionType: 'Kubernetes Service Connection'
-              kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
-              command: 'apply'
-              arguments: '-f $(Build.SourcesDirectory)/02_configure-custom-role.yaml'
+          #- task: Kubernetes@1
+          #  displayName: Configure custom role
+          #  inputs:
+          #    connectionType: 'Kubernetes Service Connection'
+          #    kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
+          #    command: 'apply'
+          #    arguments: '-f $(Build.SourcesDirectory)/02_configure-custom-role.yaml'
 
           #- task: Kubernetes@1
           #  displayName: Apply Azure Vote
