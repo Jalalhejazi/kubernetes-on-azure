@@ -51,16 +51,6 @@
 
 ```bash
 . ./validate-k8s.sh
-
-# PASS - 02_configure-custom-role.yaml contains a valid Role (default.azure-devops-deploy-role)
-# PASS - 02_configure-custom-role.yaml contains a valid RoleBinding (default.azure-devops-deploy-manager)
-# PASS - 100_azure_vote.yaml contains a valid Deployment (azure-vote-back)
-# PASS - 100_azure_vote.yaml contains a valid Service (azure-vote-back)
-# PASS - 100_azure_vote.yaml contains a valid Deployment (azure-vote-front)
-# PASS - 100_azure_vote.yaml contains a valid Service (azure-vote-front)
-# PASS - 200_angular_kursus_app.yaml contains a valid Deployment (angular-kursus-2020)
-# PASS - 200_angular_kursus_app.yaml contains a valid Service (angular-kursus-2020)
-
 ```
 
 
