@@ -18,28 +18,9 @@ stages:
             inputs:
               artifactName: yaml
               targetPath: $(Build.SourcesDirectory)
-
           - task: HelmInstaller@1
             inputs:
               helmVersionToInstall: '2.14.3'
-
-          #- task: Kubernetes@1
-          #  displayName: Configure custom role
-          #  inputs:
-          #    connectionType: 'Kubernetes Service Connection'
-          #    kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
-          #    command: 'apply'
-          #    arguments: '-f $(Build.SourcesDirectory)/02_configure-custom-role.yaml'
-
-          #- task: Kubernetes@1
-          #  displayName: Apply Azure Vote
-          #  inputs:
-          #    connectionType: 'Kubernetes Service Connection'
-          #    kubernetesServiceEndpoint: ${{ parameters.STAGE_K8S_SERVICE_ENDPOINT }}
-          #    namespace: ${{ parameters.STAGE_ENVIRONMENT }}
-          #    command: 'apply'
-          #    arguments: '-f $(Build.SourcesDirectory)/100_azure_vote.yaml'
-           
           - task: Kubernetes@1
             displayName: Apply angular kursus app
             inputs:
@@ -48,13 +29,6 @@ stages:
               namespace: ${{ parameters.STAGE_ENVIRONMENT }}
               command: 'apply'
               arguments: '-f $(Build.SourcesDirectory)/200_angular_kursus_app.yaml'
-
-          #- task: Bash@3
-          #  displayName: "Repo update"
-          #  inputs:
-          #    targetType: 'inline'
-          #    script: 'helm repo update'  
-
           - task: Bash@3
             displayName: "echo staging"
             inputs:
