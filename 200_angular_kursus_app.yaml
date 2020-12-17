@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion:  apps/v1
 # A deployment is used to keep a set of pods running by creating pods from a template.
 kind: Deployment
 

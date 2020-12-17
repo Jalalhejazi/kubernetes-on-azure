@@ -49,8 +49,8 @@
 
 ## Validating K8s yaml files
 
-```bash
-. ./validate-k8s.sh
+```powershell
+npm run validate
 ```
 
 

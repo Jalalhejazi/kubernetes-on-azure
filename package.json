@@ -1,0 +1,17 @@
+{
+  "name": "experimental",
+  "version": "1.0.0",
+  "description": " ",
+  "scripts": {
+    "predeploy":"npm run validate",
+    "deploy":"powershell ./deploy.ps1",
+    "validate": "powershell ./validate.ps1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://superusers-kursus@dev.azure.com/superusers-kursus/kubernetes-on-azure/_git/experimental"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
