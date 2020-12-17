@@ -1,10 +1,10 @@
 {
   "name": "experimental",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": " ",
   "scripts": {
-    "predeploy":"npm run validate",
-    "deploy":"powershell ./deploy.ps1",
+    "predeploy": "npm run validate",
+    "deploy": "powershell ./deploy.ps1",
     "validate": "powershell ./validate.ps1"
   },
   "repository": {
