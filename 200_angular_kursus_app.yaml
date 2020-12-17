@@ -9,7 +9,7 @@ spec:
 #  the replicas key sets the number of instances of the pod that the deployment should keep alive.
 #  How many copies of each pod do we want? 1, 2, 3, 4, 5, 6, etc..
 #  and if replicas: 0 then no pods is running, Zero means shutdown  
-  replicas: 1
+  replicas: 2
 
 # How do we want to update the pods?
 
