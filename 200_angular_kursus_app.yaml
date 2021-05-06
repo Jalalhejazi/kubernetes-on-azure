@@ -43,7 +43,7 @@ spec:
       
       containers:
       - name: angular-kursus-2020
-        # https://dev.azure.com/superusers-kursus/angular/_git/ng-template-05?path=%2Fdockerfile
+      # on hub.docker.com
         image: jalalhejazi/angular-kursus-2020
         resources:
           # https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
