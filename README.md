@@ -64,9 +64,10 @@ kubectl get deployments --namespace development
 
 kubectl describe deployment angular-kursus-2020  --namespace development
 
+## apply any change 
+kubectl apply -f 200_angular_kursus_app.yaml
+
+## Destroy everything
+kubectl delete -f 200_angular_kursus_app.yaml
+
 ```
-
-
-
-
-
