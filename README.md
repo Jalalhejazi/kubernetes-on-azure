@@ -53,6 +53,20 @@
 npm run validate
 ```
 
+## kubectl (admin control)
+
+- Connect to your cluster using command line tooling to interact directly with cluster using kubectl, the command line tool for Kubernetes. Kubectl is available within the Azure Cloud Shell by default and can also be installed locally.
+
+```bash
+az aks get-credentials --resource-group aks-rg --name aks
+
+kubectl get deployments --namespace development
+
+kubectl describe deployment angular-kursus-2020  --namespace development
+
+```
+
+
 
 
 
