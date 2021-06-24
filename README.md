@@ -26,7 +26,6 @@
 
 ## step: 01
 
-- In first step we need to define environment in Azure Dev Ops for each cluster. 
 - Go to Pipeline->Environment->Create Environment Type the name of the environment, provide description and choose Kubernetes as a resource and click Next.
    - Create Environment for "development"
    - Create Environment for "test"
