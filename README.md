@@ -2,8 +2,8 @@
 
 ### Yet Another Markup Language ==> YML and YAML
 
-## I use YAML for Kubernetes
-## I use YML  for Azure-pipeline 
+## I use .YAML for Kubernetes
+## I use .YML  for Azure-pipeline 
 
 <br>
 <br>
