@@ -38,31 +38,36 @@
 ## step: 02
 
 - You should also configure variable group [under pipelines --> Library ](https://dev.azure.com/superusers-kursus/kubernetes-on-azure/_library?itemType=VariableGroups)
+- Before running Azure-pipeline-yaml for first time, assign variable group "kubernetes-on-azure" to pipeline.
+
+```yaml
+## Name the variable group: kubernetes-on-azure
+DEV_ENVIRONMENT_NAME=development
+DEV_CLUSTER_SERVICE_CONNECTION_NAME=development
+```
 
 
 ## step: 03
+- Run pipeline 
+- Change scaling
+- etc
 
-- Before running Azure-pipeline-yaml for first time, assign variable group to pipeline.
 
-- Run pipeline and retry ... 
+<hr>
 
+# Plan B (manual integration), on any reason the CI Pipeline is not working:  
 
-## Validating K8s yaml files
+- Connect to your cluster using command line or CloudShell to interact directly with cluster using kubectl, 
+the command line tool for Kubernetes. 
+Kubectl is available within the Azure Cloud Shell by default and can also be installed locally.
 
-```powershell
-npm run validate
-```
-
-## kubectl (admin control)
-
-- Connect to your cluster using command line tooling to interact directly with cluster using kubectl, the command line tool for Kubernetes. Kubectl is available within the Azure Cloud Shell by default and can also be installed locally.
+- Connect to https://shell.azure.com/bash/
 
 ```bash
-az aks get-credentials --resource-group aks-rg --name aks
+cd $home
 
-kubectl get deployments --namespace development
-
-kubectl describe deployment angular-kursus-2020  --namespace development
+# clone your own repo
+git clone <repo>
 
 ## apply any change 
 kubectl apply -f 200_angular_kursus_app.yaml
