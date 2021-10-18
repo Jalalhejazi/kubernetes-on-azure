@@ -1,4 +1,8 @@
 # GitOps Proof-Of-Concept
+
+![](AKS.jpg)
+
+
 - Multi-Stage YML Azure-pipeline
 
 - Yet Another Markup Language ==> YML and YAML
